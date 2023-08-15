@@ -10,11 +10,12 @@ from ..models import Question
 @login_required(login_url='common:login')
 def question_create(request):
     if request.method == 'POST':
-        form = QuestionForm(request.POST)
+        form = QuestionForm(request.POST, request.FILES)
         if form.is_valid():
             question = form.save(commit=False)
             question.author = request.user  # author 속성에 로그인 계정 저장
             question.create_date = timezone.now()
+            question.images = request.FILES['images']
             question.save()
             return redirect('pybo:index')
     else:

@@ -18,6 +18,9 @@
     <div class="card my-3">
         <div class="card-body">
             <div class="card-text" style="white-space: pre-line;">{{ question.content }}</div>
+            {% if question.images %}
+                <img src="{{ question.images.url }}">
+            {% endif %}
             <div class="d-flex justify-content-end">
                 {% if question.modify_date %}
                 <div class="badge bg-light text-dark p-2 text-start mx-3">
@@ -90,9 +93,9 @@
 const delete_elements = document.getElementsByClassName("delete");
 Array.from(delete_elements).forEach(function(element) {
     element.addEventListener('click', function() {
-        // if(confirm("정말로 삭제하시겠습니까?")) {
-        location.href = this.dataset.uri;
-        // };
+        if(confirm("정말로 삭제하시겠습니까?")) {
+            location.href = this.dataset.uri;
+        };
     });
 });
 const recommend_elements = document.getElementsByClassName("recommend");

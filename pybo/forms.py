@@ -1,6 +1,5 @@
 from django import forms
 from pybo.models import Question, Answer
-from image import *
 
 class QuestionForm(forms.ModelForm):
     class Meta:
