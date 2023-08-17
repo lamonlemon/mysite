@@ -15,7 +15,7 @@ def question_create(request):
             question = form.save(commit=False)
             question.author = request.user  # author 속성에 로그인 계정 저장
             question.create_date = timezone.now()
-            question.images = request.FILES['images']
+            question.images = request.FILES.get('images')
             question.save()
             return redirect('pybo:index')
     else:
